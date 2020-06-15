@@ -256,7 +256,7 @@ output "myos_ip" {
 
 resource "null_resource" "nulllocal2"  {
 	provisioner "local-exec" {
-	    command = "echo  ${aws_instance.web.public_ip} > publicip.txt"
+	    command = "start chrome ${aws_instance.web.public_ip}"
               	}
 }
 
