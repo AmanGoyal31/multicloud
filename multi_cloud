@@ -127,6 +127,9 @@ resource "null_resource" "harddisk" {
 
 #create a s3 bucket
 resource "aws_s3_bucket" "bucket" {
+  depends_on = [
+    null_resource.harddisk,
+  ]
   bucket = "my-tf-test-bucket-myweb-2"
   //acl    = "private"
    acl   ="public-read"
@@ -255,6 +258,9 @@ output "myos_ip" {
 
 
 resource "null_resource" "nulllocal2"  {
+  depends_on = [
+     null_resource.harddisk,
+    ]
 	provisioner "local-exec" {
 	    command = "start chrome ${aws_instance.web.public_ip}"
               	}
